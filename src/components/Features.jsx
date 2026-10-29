@@ -1,92 +1,71 @@
 import { motion } from "framer-motion";
-import { featuresSlideLeft } from "../utility/animations";
+import { FiArrowRight } from "react-icons/fi";
+import { GiMeditation, GiMuscleUp, GiRunningShoe, GiWhistle } from "react-icons/gi";
+import SectionHeading from "./SectionHeading";
+import { fadeUp } from "../utility/animations";
+import { container, sectionPadding } from "./ui";
 
 const features = [
   {
-    icon: "/men.png",
-    title: "Yoga Equipments",
-    desc: "It is a long established fact that a reader readable.",
+    icon: GiMeditation,
+    title: "Yoga & Mobility",
+    desc: "Guided flows that improve flexibility, posture and mental focus for every level.",
   },
   {
-    icon: "/1st.png",
-    title: "Muscles Equipments",
-    desc: "It is a long established fact that a reader readable.",
+    icon: GiMuscleUp,
+    title: "Strength Training",
+    desc: "Progressive programs and premium free weights designed to build real muscle.",
   },
   {
-    icon: "/bag.png",
-    title: "Fitness Equipments",
-    desc: "It is a long established fact that a reader readable.",
+    icon: GiRunningShoe,
+    title: "Cardio & HIIT",
+    desc: "High-energy sessions that boost endurance, burn fat and keep you motivated.",
+  },
+  {
+    icon: GiWhistle,
+    title: "Personal Coaching",
+    desc: "One-on-one guidance from certified trainers, tailored to your personal goals.",
   },
 ];
 
 function Features() {
   return (
-    <section className="bg-white px-4 sm:px-6 lg:px-8 w-full max-w-7xl mx-auto -mb-10">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-center">
+    <section id="services" className={`bg-white ${sectionPadding}`}>
+      <div className={container}>
+        <SectionHeading
+          eyebrow="Our Services"
+          title="What we offer for you"
+          description="Everything you need to transform your body and mind — under one roof, with experts by your side."
+        />
 
-        {/* LEFT TEXT */}
-        <div className="text-left">
-          <h2
-            className="text-3xl sm:text-4xl font-bold leading-tight text-gray-900"
-            style={{
-              fontFamily: "Georgia, Cambria, 'Times New Roman', serif",
-              fontWeight: 700,
-            }}
-          >
-            What we offer
-            <br />
-            for you
-          </h2>
-
-          <p className="text-gray-500 mt-3 text-sm leading-relaxed">
-            It is a long established fact that a reader readable.
-          </p>
-        </div>
-
-        {/* FEATURE CARDS */}
-        {features.map((item, i) => (
-          <motion.div
-            key={i}
-            variants={featuresSlideLeft(i * 0.15)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="
-              bg-[#f5f5f5]
-              rounded-2xl
-              p-6
-              min-h-[200px]
-              w-full
-              max-w-[360px]
-              shadow-sm
-              hover:bg-white
-              hover:shadow-[0_10px_30px_rgba(128,128,128,0.25)]
-              transition-all
-              duration-300
-              cursor-pointer
-            "
-          >
-            <img
-              src={item.icon}
-              alt={item.title}
-              className="w-12 h-12 mb-4 object-contain"
-            />
-
-            <h3
-              className="text-lg font-bold text-gray-900 mb-1"
-              style={{
-                fontFamily: "Georgia, Cambria, 'Times New Roman', serif",
-                fontWeight: 700,
-              }}
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {features.map(({ icon: Icon, title, desc }, i) => (
+            <motion.div
+              key={title}
+              variants={fadeUp(i * 0.1)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
             >
-              {item.title}
-            </h3>
+              <article className="group flex h-full flex-col rounded-2xl border border-gray-100 bg-white p-7 shadow-sm transition-[translate,box-shadow,border-color] duration-300 hover:-translate-y-1.5 hover:border-orange-200 hover:shadow-xl hover:shadow-orange-500/10">
+                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-50 text-orange-500 transition-colors duration-300 group-hover:bg-orange-500 group-hover:text-white">
+                  <Icon size={28} />
+                </span>
 
-            <p className="text-gray-500 text-sm leading-relaxed">
-              {item.desc}
-            </p>
-          </motion.div>
-        ))}
+                <h3 className="mt-6 text-xl font-bold">{title}</h3>
+                <p className="mt-3 flex-1 text-[15px] leading-relaxed text-gray-600">{desc}</p>
+
+                <a
+                  href="#programs"
+                  className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-orange-600"
+                >
+                  Learn more
+                  <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+                </a>
+              </article>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

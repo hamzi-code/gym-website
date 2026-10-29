@@ -1,3 +1,21 @@
+// Generic: Fade + Slide Up Animation (section headings, cards)
+export const fadeUp = (delay = 0) => ({
+  hidden: {
+    opacity: 0,
+    y: 40,
+  },
+
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      delay,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+});
+
 // Hero Section: Left Slide Animation
 export const slideLeft = (delay = 0) => ({
   hidden: {

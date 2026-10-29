@@ -1,59 +1,57 @@
+import { motion } from "framer-motion";
+import { FiArrowRight } from "react-icons/fi";
+import { fadeUp } from "../utility/animations";
+import { container } from "./ui";
+
 function DiscountBanner() {
   return (
-    <section className="w-full px-6 sm:px-10 lg:px-16 -mb-8">
-      <div
-        className="
-          w-full
-          max-w-[1100px]
-          mx-auto
-          text-center
-          bg-[#f5f5f5]
-          px-6
-          sm:px-10
-          lg:px-14
-          py-20
-          sm:py-24
-          rounded-[18px]
-          shadow-sm
-          border
-          border-gray-100
-        "
-      >
-        <h1
-          className="text-[60px] leading-[75px] text-black max-w-[1050px] mx-auto"
-          style={{
-            fontFamily:
-              '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif',
-            fontWeight: 700,
-            fontStyle: "normal",
-          }}
+    <section className="bg-white py-20 sm:py-24">
+      <div className={container}>
+        <motion.div
+          variants={fadeUp()}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="relative isolate overflow-hidden rounded-3xl bg-linear-to-br from-orange-500 via-orange-500 to-orange-600 px-6 py-16 text-center shadow-2xl shadow-orange-500/30 sm:px-12 sm:py-20"
         >
-          Get 20% Discount On Your First
-          <br />
-          Order, Are You Ready To Buy
-        </h1>
+          {/* DECORATIVE CIRCLES */}
+          <div
+            aria-hidden="true"
+            className="absolute -top-24 -left-24 -z-10 h-72 w-72 rounded-full border-[40px] border-white/10"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute -right-20 -bottom-28 -z-10 h-80 w-80 rounded-full bg-white/10"
+          />
 
-        <p
-          className="mt-5 text-[16px] leading-[32px] text-gray-600 whitespace-nowrap mx-auto"
-          style={{
-            fontFamily:
-              '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif',
-            fontWeight: 400,
-            fontStyle: "normal",
-          }}
-        >
-          We will make sure you get the right and the best quality products for your workout
-        </p>
+          <span className="inline-block rounded-full bg-white/15 px-4 py-1 text-xs font-semibold tracking-wider text-white uppercase">
+            Limited time offer
+          </span>
 
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-8 mt-10">
-          <button className="w-[180px] bg-orange-500 text-white font-semibold px-8 py-4 rounded-[10px] hover:bg-orange-600 transition shadow-sm cursor-pointer">
-            Learn More
-          </button>
+          <h2 className="mx-auto mt-5 max-w-3xl text-3xl leading-tight font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+            Get 20% off your first membership. Are you ready?
+          </h2>
 
-          <button className="w-[180px] bg-transparent border-2 border-orange-500 text-orange-500 font-semibold cursor-pointer px-8 py-4 rounded-[10px] hover:bg-orange-500 hover:text-white transition">
-            Stay In Touch
-          </button>
-        </div>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-orange-50 sm:text-lg">
+            We’ll make sure you get the right guidance and the best quality equipment for
+            every workout. Start today and feel the difference.
+          </p>
+
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a
+              href="#pricing"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-orange-600 shadow-lg transition-[translate,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-xl sm:w-auto"
+            >
+              Claim Offer <FiArrowRight />
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex w-full items-center justify-center rounded-full border-2 border-white/70 px-8 py-3.5 font-semibold text-white transition-colors duration-300 hover:bg-white hover:text-orange-600 sm:w-auto"
+            >
+              Stay In Touch
+            </a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

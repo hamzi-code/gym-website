@@ -1,143 +1,78 @@
-import { FaStar } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { FaQuoteLeft, FaStar } from "react-icons/fa";
+import SectionHeading from "./SectionHeading";
+import { fadeUp } from "../utility/animations";
+import { container, sectionPadding } from "./ui";
 
 const testimonials = [
   {
-    name: "John Doe",
-    role: "John Doe",
-    image: "/sit.png",
+    name: "Sarah Johnson",
+    role: "Member since 2022",
+    initials: "SJ",
+    quote:
+      "The coaches here genuinely care. In six months I lost 12 kg, gained strength I never thought I had, and actually look forward to every session.",
   },
   {
-    name: "Steve Smith",
-    role: "Steve Smith",
-    image: "/sit.png",
+    name: "Michael Chen",
+    role: "Marathon runner",
+    initials: "MC",
+    quote:
+      "The cardio and strength programs took my running to another level. I set a new personal best this year — the structured plans make all the difference.",
   },
   {
-    name: "Kristen",
-    role: "Kristen",
-    image: "/sit.png",
+    name: "Emily Carter",
+    role: "Yoga enthusiast",
+    initials: "EC",
+    quote:
+      "A clean, welcoming space with amazing yoga classes. The community keeps me consistent and my flexibility and stress levels have improved so much.",
   },
 ];
 
 function Testimonials() {
   return (
-    <section className="py-12 sm:py-16 bg-white -mb-30">
-      <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-7">
+    <section id="reviews" className={`bg-cream ${sectionPadding}`}>
+      <div className={container}>
+        <SectionHeading
+          eyebrow="Testimonials"
+          title="What our members are saying"
+          description="Real stories from real people who transformed their lives with Coders Gym."
+        />
 
-        {/* HEADING */}
-        <div className="mb-14">
-          <h2
-            className="text-[48px] leading-[60px] text-gray-900"
-            style={{
-              fontFamily:
-                '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif',
-              fontWeight: 700,
-              fontStyle: "normal",
-            }}
-          >
-            What Are The Customer
-            <br />
-            Saying About Us
-          </h2>
-        </div>
-
-        {/* TESTIMONIAL CARDS */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-
+        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((t, i) => (
-            <div
-              key={i}
-              className="
-                bg-[#FFF4E8]
-                rounded-[20px]
-                px-8
-                py-6
-                h-[270px]
-                shadow-[0_4px_8px_rgba(0,0,0,0.12)]
-                flex
-                flex-col
-              "
+            <motion.figure
+              key={t.name}
+              variants={fadeUp(i * 0.1)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.25 }}
+              className="flex h-full flex-col rounded-3xl bg-white p-8 shadow-sm ring-1 ring-orange-100"
             >
-
-              {/* USER INFO */}
-              <div className="flex items-center gap-5">
-
-                <img
-                  src={t.image}
-                  alt={t.name}
-                  className="
-                    w-[70px]
-                    h-[70px]
-                    rounded-full
-                    object-cover
-                    flex-shrink-0
-                  "
-                />
-
-                <div>
-                  <h3
-                    className="text-[24px] leading-[30px] text-gray-900"
-                    style={{
-                      fontFamily:
-                        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif',
-                      fontWeight: 600,
-                    }}
-                  >
-                    {t.name}
-                  </h3>
-
-                  <p
-                    className="text-[18px] leading-[26px] text-gray-600"
-                    style={{
-                      fontFamily:
-                        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif',
-                      fontWeight: 400,
-                    }}
-                  >
-                    {t.role}
-                  </p>
+              <div className="flex items-center justify-between">
+                <div className="flex gap-1 text-amber-400" aria-label="Rated 5 out of 5">
+                  {[...Array(5)].map((_, idx) => (
+                    <FaStar key={idx} size={16} />
+                  ))}
                 </div>
-
+                <FaQuoteLeft className="text-orange-200" size={28} aria-hidden="true" />
               </div>
 
-              {/* REVIEW */}
-              <p
-                className="
-                  mt-7
-                  text-[16px]
-                  leading-[29px]
-                  text-gray-600
-                "
-                style={{
-                  fontFamily:
-                    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif',
-                  fontWeight: 400,
-                }}
-              >
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Eaque reiciendis inventore iste ratione ex alias quis magni
-                at optio.
-              </p>
+              <blockquote className="mt-6 flex-1 text-[15px] leading-relaxed text-gray-600 sm:text-base">
+                “{t.quote}”
+              </blockquote>
 
-              {/* STARS */}
-              <div className="flex items-center gap-[3px] mt-auto text-yellow-500 text-[20px]">
-                {[...Array(5)].map((_, idx) => (
-                  <FaStar key={idx} />
-                ))}
-              </div>
-
-            </div>
+              <figcaption className="mt-8 flex items-center gap-4 border-t border-gray-100 pt-6">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-orange-400 to-orange-600 font-display text-sm font-bold text-white">
+                  {t.initials}
+                </span>
+                <div>
+                  <p className="font-display font-semibold text-ink">{t.name}</p>
+                  <p className="text-sm text-gray-500">{t.role}</p>
+                </div>
+              </figcaption>
+            </motion.figure>
           ))}
-
         </div>
-
-        {/* DOTS */}
-        <div className="flex justify-center items-center gap-4 mt-16">
-          <span className="w-2 h-2 rounded-full bg-gray-700"></span>
-          <span className="w-2 h-2 rounded-full bg-gray-300"></span>
-          <span className="w-2 h-2 rounded-full bg-gray-300"></span>
-          <span className="w-2 h-2 rounded-full bg-gray-300"></span>
-        </div>
-
       </div>
     </section>
   );

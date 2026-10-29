@@ -1,368 +1,165 @@
-import {
-  FaMapMarkerAlt,
-  FaInstagram,
-  FaFacebookF,
-  FaLinkedinIn,
-} from "react-icons/fa";
+import { useState } from "react";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
+import { FiMail, FiMapPin, FiPhone, FiSend } from "react-icons/fi";
+import Logo from "./Logo";
+import { navLinks } from "../data/navigation";
+import { container } from "./ui";
 
-const fontFamily =
-  '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"';
+const socials = [
+  { icon: FaInstagram, label: "Instagram", href: "https://instagram.com" },
+  { icon: FaFacebookF, label: "Facebook", href: "https://facebook.com" },
+  { icon: FaLinkedinIn, label: "LinkedIn", href: "https://linkedin.com" },
+  { icon: FaYoutube, label: "YouTube", href: "https://youtube.com" },
+];
 
-const textStyle = {
-  fontFamily,
-  fontWeight: 400,
-  fontStyle: "normal",
-  color: "oklch(0.872 0.01 258.338)",
-  fontSize: "16px",
-  lineHeight: "28px",
-};
+const companyLinks = [
+  { label: "Our Services", href: "#services" },
+  { label: "Membership", href: "#pricing" },
+  { label: "Privacy Policy", href: "#contact" },
+  { label: "Terms of Service", href: "#contact" },
+];
 
-const linkStyle = {
-  fontFamily,
-  fontWeight: 400,
-  fontStyle: "normal",
-  fontSize: "16px",
-  lineHeight: "28px",
-};
+const contactInfo = [
+  { icon: FiMapPin, text: "123 Fitness Avenue, Lahore, Pakistan" },
+  { icon: FiPhone, text: "+92 300 1234567", href: "tel:+923001234567" },
+  { icon: FiMail, text: "hello@codersgym.com", href: "mailto:hello@codersgym.com" },
+];
 
-const headingStyle = {
-  fontFamily,
-  fontWeight: 700,
-  fontStyle: "normal",
-  color: "rgb(255, 255, 255)",
-  fontSize: "24px",
-  lineHeight: "32px",
-};
+const linkClass = "text-[15px] text-gray-400 transition-colors duration-200 hover:text-orange-400";
 
 function Footer() {
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!email) return;
+    setSubscribed(true);
+    setEmail("");
+  };
+
   return (
-    <footer className="w-full bg-white pt-7">
-
-      {/* FOOTER BOX */}
-      <div
-        className="
-          w-full
-          bg-[#0a0f1d]
-          text-white
-          rounded-t-[55px]
-          px-8
-          sm:px-10
-          lg:px-12
-          pt-16
-          pb-10
-        "
-      >
-
-        {/* MAIN CONTENT */}
-        <div
-          className="
-            grid
-            grid-cols-1
-            md:grid-cols-2
-            lg:grid-cols-4
-            gap-12
-            lg:gap-10
-          "
-        >
-
+    <footer id="contact" className="bg-ink text-gray-400">
+      <div className={`${container} pt-16 pb-10 lg:pt-20`}>
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           {/* BRAND */}
-          <div>
-
-            {/* LOGO */}
-            <div className="flex items-center gap-3">
-
-              <img
-                src="/1st.png"
-                alt="Coders Gym"
-                className="w-[48px] h-[48px] object-contain"
-              />
-
-              <h2
-                className="text-[30px] leading-[37px]"
-                style={{
-                  fontFamily,
-                  fontWeight: 700,
-                  fontStyle: "normal",
-                  color: "rgb(255, 255, 255)",
-                }}
-              >
-                CODERS{" "}
-                <span className="text-orange-500">GYM</span>
-              </h2>
-
-            </div>
-
-            {/* DESCRIPTION */}
-            <p
-              className="mt-6 max-w-[390px]"
-              style={textStyle}
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab
-              placeat quaerat doloribus odit perferendis autem blanditiis,
-              nihil pariatur iusto accusamus.
+          <div className="lg:col-span-4">
+            <Logo light />
+            <p className="mt-6 max-w-sm text-[15px] leading-relaxed">
+              Expert coaching, premium equipment and a community that pushes you to be
+              your best. Your transformation starts here.
             </p>
 
-            {/* SOCIAL ICONS */}
-            <div className="flex items-center gap-7 mt-7">
-
-              {/* LOCATION */}
-              <FaMapMarkerAlt
-                className="
-                  text-white
-                  text-[31px]
-                  cursor-pointer
-                  hover:scale-125
-                  transition-transform
-                  duration-300
-                "
-              />
-
-              {/* INSTAGRAM */}
-              <FaInstagram
-                className="
-                  text-white
-                  text-[32px]
-                  cursor-pointer
-                  hover:scale-125
-                  transition-transform
-                  duration-300
-                "
-              />
-
-              {/* FACEBOOK */}
-              <FaFacebookF
-                className="
-                  text-white
-                  text-[31px]
-                  cursor-pointer
-                  hover:scale-125
-                  transition-transform
-                  duration-300
-                "
-              />
-
-              {/* LINKEDIN */}
-              <FaLinkedinIn
-                className="
-                  text-white
-                  text-[31px]
-                  cursor-pointer
-                  hover:scale-125
-                  transition-transform
-                  duration-300
-                "
-              />
-
-            </div>
-          </div>
-
-
-          {/* IMPORTANT LINKS */}
-          <div>
-
-            <h3
-              className="mb-7"
-              style={headingStyle}
-            >
-              Important Links
-            </h3>
-
-            <ul className="space-y-5">
-
-              <li
-                className="
-                  text-gray-400
-                  cursor-pointer
-                  hover:text-orange-500
-                  transition-colors
-                  duration-300
-                "
-                style={linkStyle}
-              >
-                Home
-              </li>
-
-              <li
-                className="
-                  text-gray-400
-                  cursor-pointer
-                  hover:text-orange-500
-                  transition-colors
-                  duration-300
-                "
-                style={linkStyle}
-              >
-                About
-              </li>
-
-              <li
-                className="
-                  text-gray-400
-                  cursor-pointer
-                  hover:text-orange-500
-                  transition-colors
-                  duration-300
-                "
-                style={linkStyle}
-              >
-                Services
-              </li>
-
-              <li
-                className="
-                  text-gray-400
-                  cursor-pointer
-                  hover:text-orange-500
-                  transition-colors
-                  duration-300
-                "
-                style={linkStyle}
-              >
-                Login
-              </li>
-
+            <ul className="mt-7 flex items-center gap-3">
+              {socials.map(({ icon: Icon, label, href }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-white ring-1 ring-white/10 transition-colors duration-200 hover:bg-orange-500 hover:ring-orange-500"
+                  >
+                    <Icon size={16} />
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-
-          {/* COMPANY LINKS */}
-          <div>
-
-            <h3
-              className="mb-7"
-              style={headingStyle}
-            >
-              Company Links
-            </h3>
-
-            <ul className="space-y-5">
-
-              <li
-                className="
-                  text-gray-400
-                  cursor-pointer
-                  hover:text-orange-500
-                  transition-colors
-                  duration-300
-                "
-                style={linkStyle}
-              >
-                Our Services
-              </li>
-
-              <li
-                className="
-                  text-gray-400
-                  cursor-pointer
-                  hover:text-orange-500
-                  transition-colors
-                  duration-300
-                "
-                style={linkStyle}
-              >
-                Contact
-              </li>
-
-              <li
-                className="
-                  text-gray-400
-                  cursor-pointer
-                  hover:text-orange-500
-                  transition-colors
-                  duration-300
-                "
-                style={linkStyle}
-              >
-                Privacy Policy
-              </li>
-
+          {/* QUICK LINKS */}
+          <div className="lg:col-span-2">
+            <h3 className="text-lg font-semibold text-white">Quick Links</h3>
+            <ul className="mt-6 space-y-3.5">
+              {navLinks.map((link) => (
+                <li key={link.id}>
+                  <a href={`#${link.id}`} className={linkClass}>
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-
-          {/* RESOURCES */}
-          <div>
-
-            <h3
-              className="mb-7"
-              style={headingStyle}
-            >
-              Resources
-            </h3>
-
-            <ul className="space-y-5">
-
-              <li
-                className="
-                  text-gray-400
-                  cursor-pointer
-                  hover:text-orange-500
-                  transition-colors
-                  duration-300
-                "
-                style={linkStyle}
-              >
-                Home
-              </li>
-
-              <li
-                className="
-                  text-gray-400
-                  cursor-pointer
-                  hover:text-orange-500
-                  transition-colors
-                  duration-300
-                "
-                style={linkStyle}
-              >
-                About
-              </li>
-
-              <li
-                className="
-                  text-gray-400
-                  cursor-pointer
-                  hover:text-orange-500
-                  transition-colors
-                  duration-300
-                "
-                style={linkStyle}
-              >
-                Services
-              </li>
-
-              <li
-                className="
-                  text-gray-400
-                  cursor-pointer
-                  hover:text-orange-500
-                  transition-colors
-                  duration-300
-                "
-                style={linkStyle}
-              >
-                Login
-              </li>
-
+          {/* COMPANY */}
+          <div className="lg:col-span-2">
+            <h3 className="text-lg font-semibold text-white">Company</h3>
+            <ul className="mt-6 space-y-3.5">
+              {companyLinks.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} className={linkClass}>
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
+          {/* CONTACT + NEWSLETTER */}
+          <div className="lg:col-span-4">
+            <h3 className="text-lg font-semibold text-white">Get in Touch</h3>
+            <ul className="mt-6 space-y-3.5">
+              {contactInfo.map(({ icon: Icon, text, href }) => (
+                <li key={text} className="flex items-start gap-3 text-[15px]">
+                  <Icon className="mt-1 shrink-0 text-orange-400" />
+                  {href ? (
+                    <a href={href} className={linkClass}>
+                      {text}
+                    </a>
+                  ) : (
+                    <span>{text}</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+
+            <form onSubmit={handleSubmit} className="mt-8">
+              <label htmlFor="newsletter-email" className="text-sm font-medium text-white">
+                Subscribe to our newsletter
+              </label>
+              <div className="mt-3 flex gap-2">
+                <input
+                  id="newsletter-email"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setSubscribed(false);
+                  }}
+                  placeholder="you@example.com"
+                  className="min-w-0 flex-1 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm text-white placeholder:text-gray-500 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/30 focus:outline-none"
+                />
+                <button
+                  type="submit"
+                  aria-label="Subscribe"
+                  className="flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center rounded-full bg-orange-500 text-white transition-colors hover:bg-orange-600"
+                >
+                  <FiSend size={18} />
+                </button>
+              </div>
+              <p role="status" className="mt-2 h-5 text-sm text-orange-400">
+                {subscribed && "Thanks for subscribing! 🎉"}
+              </p>
+            </form>
+          </div>
         </div>
 
-
-        {/* DIVIDER */}
-        <div className="border-t border-gray-800 mt-14"></div>
-
-
-        {/* COPYRIGHT */}
-        <div className="text-center pt-7">
-
-          <p style={textStyle}>
-            © Copyright 2024 The Coding Journey
-          </p>
-
+        {/* BOTTOM BAR */}
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm sm:flex-row">
+          <p>© {new Date().getFullYear()} Coders Gym. All rights reserved.</p>
+          <div className="flex gap-6">
+            <a href="#contact" className="transition-colors hover:text-orange-400">
+              Privacy
+            </a>
+            <a href="#contact" className="transition-colors hover:text-orange-400">
+              Terms
+            </a>
+            <a href="#home" className="transition-colors hover:text-orange-400">
+              Back to top ↑
+            </a>
+          </div>
         </div>
-
       </div>
     </footer>
   );
